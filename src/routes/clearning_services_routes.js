@@ -1,7 +1,7 @@
 const express = require('express');
 const shopRouter = express.Router();
 const audit = require('../middleware/audit.js');
-const ShopController = require('../controllers/cleaning_services_controller.js');
+const ServicesController = require('../controllers/cleaning_services_controller.js');
 const check_auth = require('../middleware/check-auth.js');
 
 const API = {
@@ -15,14 +15,14 @@ shopRouter.get(
   API.GET_ALL_SHOPS,
   audit,
   check_auth,
-  ShopController.getAllShops,
+  ServicesController.getAllShops,
 );
 shopRouter.get(
   API.GET_INDIVIDUAL_SHOP,
   audit,
   check_auth,
-  ShopController.getShop,
+  ServicesController.getShop,
 );
 // add shop
-shopRouter.post(API.ADD_SHOP, audit, check_auth, ShopController.addShops);
+shopRouter.post(API.ADD_SHOP, audit, check_auth, ServicesController.addShops);
 module.exports = shopRouter;
