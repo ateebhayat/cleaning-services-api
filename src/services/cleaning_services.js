@@ -1,27 +1,38 @@
 const models = require('../models/index');
 
-class ShopService {
-  async createUser(postData) {
-    return await models.Shops({ ...postData }).save();
+class CleaningServices {
+  async createService(serviceData) {
+    return await models.Shops({ ...serviceData }).save();
   }
 
-  async getAllShops(query, page, limit) {
+  async getAllServices(query, page, limit) {
     return await models.Shops.find({ ...query })
       .skip((page - 1) * limit)
       .limit(parseInt(limit));
   }
 
-  async getShop(filter) {
-    return await models.Shops.findOne({ ...filter });
-  }
-
-  async addShops(shops) {
+  async addService(shops) {
     return await models.Shops.insertMany(shops);
   }
 
-  async getShopByID(userID) {
-    return await models.Shops.findOne({ _id: userID, isDeleted: false }).lean();
+  async getServiceByID(serviceID) {
+    return await models.Shops.findOne({
+      _id: serviceID,
+      isDeleted: false,
+    }).lean();
+  }
+
+  async deleteService(serviceID) {
+    return await models.Shops.findByIdAndDelete(serviceID);
+  }
+
+  async updateService(serviceID, updateData) {
+    return await models.Shops.findByIdAndUpdate(
+      serviceID,
+      { ...updateData },
+      { new: true },
+    );
   }
 }
 
-module.exports = new ShopService();
+module.exports = new CleaningServices();
