@@ -1,0 +1,52 @@
+const USER_ROLE = {
+  CUSTOMER: 'CUSTOMER',
+  ADMIN: 'ADMIN',
+  SELLER: 'SELLER',
+  FUNDRAISER: 'FUNDRAISER',
+};
+const PLATFORMS = {
+  FACEBOOK: 'FACEBOOK',
+  GMAIL: 'GMAIL',
+  APPLE: 'APPLE',
+  EMAIL: 'EMAIL',
+  PHONE: 'PHONE',
+};
+const STATUS = {
+  PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  FLAGGED: 'FLAGGED',
+  REJECTED: 'REJECTED',
+};
+const PAYMANETSTATUS = {
+  PENDING: 'PENDING',
+  COMPLETED: 'COMPLETED',
+};
+
+const GENDER = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE',
+  OTHER: 'OTHER',
+  NONE: 'NONE',
+};
+const PAYMENT_STATUSES = {
+  PENDING: 'pending',
+  SUCCESS: 'succeeded',
+  FAILED: 'failed',
+};
+Object.freeze(USER_ROLE);
+Object.freeze(PLATFORMS);
+Object.freeze(GENDER);
+Object.freeze(STATUS);
+Object.freeze(PAYMANETSTATUS);
+Object.freeze(PAYMENT_STATUSES);
+
+const CONSTANT_ENUM = {
+  USER_ROLE,
+  PLATFORMS,
+  GENDER,
+  STATUS,
+  PAYMANETSTATUS,
+  PAYMENT_STATUSES,
+};
+
+module.exports = CONSTANT_ENUM;
