@@ -29,7 +29,7 @@ const createService = async (req, res) => {
   const { ...rest } = req.body;
 
   // Save all shops to the database
-  const response = await CleaningServices.addService(rest);
+  const response = await CleaningServices.createService(rest);
 
   res.status(200).json({
     services: response,
@@ -42,7 +42,29 @@ const getService = async (req, res) => {
 
   return res.json({
     data: services,
+    message: 'Service deleted successfully',
+  });
+};
+const deleteService = async (req, res) => {
+  const { serviceID } = req.params;
+  const services = await CleaningServices.deleteService(serviceID);
+
+  return res.json({
+    data: services,
     message: 'Service found successfully',
+  });
+};
+const updateService = async (req, res) => {
+  const { serviceID } = req.params;
+  const updatedServiceData = req.body;
+  const services = await CleaningServices.updateService(
+    serviceID,
+    updatedServiceData,
+  );
+
+  return res.json({
+    data: services,
+    message: 'Service updated successfully',
   });
 };
 
@@ -50,6 +72,8 @@ const ShopController = {
   getAllServices: wrapAsync(getAllServices),
   addService: wrapAsync(createService),
   getService: wrapAsync(getService),
+  deleteService: wrapAsync(deleteService),
+  updateService: wrapAsync(updateService),
 };
 
 module.exports = ShopController;

@@ -140,7 +140,7 @@ app.use('/uploads', express.static('uploads'));
 
 // Routes which should handle requests
 app.use('/' + config.server.route + '/user', userRoutes);
-app.use('/' + config.server.route + '/shop', shopRoutes);
+app.use('/' + config.server.route + '/service', shopRoutes);
 
 //----------------------------Middleware for catching 404 and forward to error handler
 app.use((req, res, next) => {
