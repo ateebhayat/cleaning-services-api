@@ -1,9 +1,9 @@
 const JWT = require('../helpers/jwt/jwtHelper');
-const ShopServices = require('../services/cleaning_services');
+const CleaningServices = require('../services/cleaning_services');
 
 const { wrapAsync } = require('../utils/wrapAsync');
 
-const getAllShops = async (req, res) => {
+const getAllServices = async (req, res) => {
   const { page = 1, limit = 10, searchTerm, category } = req.body;
 
   let query = { isDeleted: false };
@@ -13,43 +13,43 @@ const getAllShops = async (req, res) => {
   if (searchTerm) {
     query = {
       ...query,
-      $or: [{ shop_name: { $regex: searchTerm, $options: 'i' } }],
+      $or: [{ service_name: { $regex: searchTerm, $options: 'i' } }],
     };
   }
-  const shops = await ShopServices.getAllShops(query, page, limit);
+  const services = await CleaningServices.getAllServices(query, page, limit);
 
   return res.json({
-    data: shops,
+    data: services,
     currentPage: page,
     nextPage: shops.length < limit ? null : page + 1,
-    message: 'Shops found successfully',
+    message: 'Service found successfully',
   });
 };
-const createShops = async (req, res) => {
+const createService = async (req, res) => {
   const { ...rest } = req.body;
 
   // Save all shops to the database
-  const response = await ShopServices.addShops(rest);
+  const response = await CleaningServices.addService(rest);
 
   res.status(200).json({
-    shops: response,
+    services: response,
   });
 };
 
-const getShop = async (req, res) => {
-  const { shopID } = req.params;
-  const shop = await ShopServices.getShopByID(shopID);
+const getService = async (req, res) => {
+  const { serviceID } = req.params;
+  const services = await CleaningServices.getServiceByID(serviceID);
 
   return res.json({
-    data: shop,
-    message: 'Shop found successfully',
+    data: services,
+    message: 'Service found successfully',
   });
 };
 
 const ShopController = {
-  getAllShops: wrapAsync(getAllShops),
-  addShops: wrapAsync(createShops),
-  getShop: wrapAsync(getShop),
+  getAllServices: wrapAsync(getAllServices),
+  addService: wrapAsync(createService),
+  getService: wrapAsync(getService),
 };
 
 module.exports = ShopController;

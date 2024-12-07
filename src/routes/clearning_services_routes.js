@@ -6,7 +6,7 @@ const check_auth = require('../middleware/check-auth.js');
 
 const API = {
   GET_ALL_SHOPS: '/',
-  GET_INDIVIDUAL_SHOP: '/:shopID',
+  GET_INDIVIDUAL_SHOP: '/:serviceID',
   ADD_SHOP: '/',
 };
 
@@ -15,14 +15,14 @@ shopRouter.get(
   API.GET_ALL_SHOPS,
   audit,
   check_auth,
-  ServicesController.getAllShops,
+  ServicesController.getAllServices,
 );
 shopRouter.get(
   API.GET_INDIVIDUAL_SHOP,
   audit,
   check_auth,
-  ServicesController.getShop,
+  ServicesController.getService,
 );
 // add shop
-shopRouter.post(API.ADD_SHOP, audit, check_auth, ServicesController.addShops);
+shopRouter.post(API.ADD_SHOP, audit, check_auth, ServicesController.addService);
 module.exports = shopRouter;
