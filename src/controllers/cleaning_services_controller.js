@@ -1,6 +1,6 @@
 const JWT = require('../helpers/jwt/jwtHelper');
 const CleaningServices = require('../services/cleaning_services');
-
+const mongoose = require('mongoose');
 const { wrapAsync } = require('../utils/wrapAsync');
 
 const getAllServices = async (req, res) => {
@@ -38,7 +38,9 @@ const createService = async (req, res) => {
 
 const getService = async (req, res) => {
   const { serviceID } = req.params;
-  const services = await CleaningServices.getServiceByID(serviceID);
+  const objectId = new mongoose.Types.ObjectId(serviceID);
+
+  const services = await CleaningServices.getServiceByID(objectId);
 
   return res.json({
     data: services,
