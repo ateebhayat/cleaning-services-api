@@ -21,7 +21,7 @@ const getAllServices = async (req, res) => {
   return res.json({
     data: services,
     currentPage: page,
-    nextPage: shops.length < limit ? null : page + 1,
+    nextPage: services.length < limit ? null : page + 1,
     message: 'Service found successfully',
   });
 };

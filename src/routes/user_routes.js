@@ -7,7 +7,6 @@ const check_signup_user = require('../middleware/check_signup_user.js');
 
 const API = {
   REGISTER_EMAIL_USER: '/register',
-  UPDATE_EMAIL_PASSWORD: '/update/password',
   LOGIN_EMAIL: '/login',
 };
 
